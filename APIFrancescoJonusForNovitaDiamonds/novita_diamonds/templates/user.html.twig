@@ -1,0 +1,73 @@
+<style type="text/css">
+    table.table {
+        background-color: #EEEEEE;
+        width: 100%;
+        text-align: center;
+        border-collapse: collapse;
+    }
+
+    table.table td, table.table th {
+        border: 1px solid #AAAAAA;
+        padding: 3px 2px;
+    }
+
+    table.table tbody td {
+        font-size: 13px;
+    }
+
+    table.table thead {
+        border-bottom: 2px solid #444444;
+    }
+
+    table.table thead th {
+        font-size: 15px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    table.table tfoot .links {
+        text-align: right;
+    }
+
+    table.table tfoot .links a {
+        display: inline-block;
+        background: #1C6EA4;
+        color: #FFFFFF;
+        padding: 2px 8px;
+        border-radius: 5px;
+    }
+</style>
+<div class="user-wrapper">
+    <h1>Users:</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Created At</th>
+            <th>Updated At</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    const $userWrapper = $('.user-wrapper');
+    const $tableBody = $userWrapper.find('tbody');
+    $.get('http://localhost/api/user', function (data, status) {
+        if (data.total && data.total > 0) {
+            $.each(data.items, function (index, item) {
+                let $currentTr = $('<tr></tr>');
+                $currentTr.append('<td>' + item.id + '</td>');
+                $currentTr.append('<td>' + item.name + '</td>');
+                $currentTr.append('<td>' + item.username + '</td>');
+                $currentTr.append('<td>' + item.createdAt + '</td>');
+                $currentTr.append('<td>' + item.updatedAt + '</td>');
+                $tableBody.append($currentTr);
+            })
+        }
+    });
+</script>

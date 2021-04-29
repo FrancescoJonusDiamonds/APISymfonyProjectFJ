@@ -1,0 +1,30 @@
+app_user_index:
+    path: /api/user
+    controller: App\Controller\UserController::index
+    methods: GET
+
+app_user_show:
+    path: /api/user/{id}
+    controller: App\Controller\UserController::show
+    methods: GET
+
+app_user_create:
+    path: /api/user
+    controller: App\Controller\UserController::create
+    methods: POST
+
+app_user_update:
+    path: /api/user/{id}
+    controller: App\Controller\UserController::update
+    methods: PUT
+
+app_user_authenticate:
+    path: /api/user/authenticate
+    controller: App\Controller\UserController::login
+    methods: POST
+
+app_user_list:
+    path: /users
+    controller: App\Controller\UserController::list
+    methods: get
+
